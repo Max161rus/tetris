@@ -32,6 +32,7 @@ function drawElement (random) {
 
   elTetrisWrapper = document.createElement('div');
   elTetrisWrapper.style.position = 'absolute';
+  elTetrisWrapper.style.marginLeft = '150px';
 
   let color = Math.floor((Math.random() * 65535)).toString(16);
 
@@ -150,20 +151,47 @@ function drawElement (random) {
     document.querySelector('.id_1').style.gridColumn = '2';
   }
 
+  down(1000);
+
 }
 
 
+// servise function
 
-let i = 0;
+// let i = 0;
 
-setInterval(() => {
-  i++;
-  if (i === 8){
-    i = 1;
-  }
-  drawElement(i);
-setTimeout(() => {
-  elTetrisWrapper.remove();
-}, 1000);
+// setInterval(() => {
+//   i++;
+//   if (i === 8){
+//     i = 1;
+//   }
+//   drawElement(i);
+// setTimeout(() => {
+//   elTetrisWrapper.remove();
+// }, 1000);
 
-}, 2000);
+// }, 2000);
+
+
+drawElement(5);
+
+function down (speed) {
+  let margin = 0;
+  const interval = setInterval(() => {
+    margin = margin + 50;
+    elTetrisWrapper.style.marginTop = `${margin}px`;
+    if(margin === 900){
+      clearInterval(interval);
+      let random;
+      while (1){
+        random = Math.floor(Math.random() * 10);
+        if(random >= 1 && random <= 7){
+          break;
+        }
+      }
+      console.log(random);
+      drawElement(random);
+    }
+  }, speed)
+}
+
