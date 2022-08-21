@@ -1,6 +1,8 @@
 'use strict';
 
 const gameField = document.querySelector('.wrapper__game');
+const glassesField = document.querySelector('.wrapper__table');
+let elTetrisWrapper; // element
 
 console.log(gameField);
 
@@ -15,13 +17,153 @@ function gridForm() {
     fieldCube.classList.add(`x=${x}__y=${y}`);
     gameField.appendChild(fieldCube);
     x++;
-    if(i === 9){
+
+    if (x === 10) {
       x = 0;
       y++;
     }
+
   }
 }
 
-gridForm();
+gridForm(); 
 
-//work a home
+function drawElement (random) {
+
+  elTetrisWrapper = document.createElement('div');
+  elTetrisWrapper.style.position = 'absolute';
+
+  let color = Math.floor((Math.random() * 65535)).toString(16);
+
+  const service = 6 - color.length; 
+
+  for (let i = 0; i < service; i++){
+    color = color + '0';
+  }
+
+  if (random === 1) { 
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '200px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);
+    }
+    gameField.appendChild(elTetrisWrapper);
+  }
+
+  if (random === 2) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '100px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);
+    }
+    gameField.appendChild(elTetrisWrapper);
+  }
+
+  if (random === 3) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '150px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);
+    }
+    gameField.appendChild(elTetrisWrapper);
+  }
+
+  if (random === 4) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '150px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);   
+    }
+    gameField.appendChild(elTetrisWrapper);
+    document.querySelector('.id_4').style.gridColumn = '3';
+  }
+
+  if (random === 5) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '150px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);   
+    }
+    gameField.appendChild(elTetrisWrapper);
+    document.querySelector('.id_4').style.gridColumn = '2';
+  }
+  
+  if (random === 6) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '150px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);   
+    }
+    gameField.appendChild(elTetrisWrapper);
+    document.querySelector('.id_3').style.gridColumn = '2';
+  }
+
+  if (random === 7) {
+    elTetrisWrapper.style.display = 'grid';
+    elTetrisWrapper.style.width = '150px';
+    elTetrisWrapper.style.gridTemplateColumns = '1fr 1fr 1fr';
+    
+    for (let i = 0; i < 4; i++){ 
+      const el = document.createElement('div');
+      el.classList.add('wrapper__game-cube');
+      el.classList.add(`id_${i + 1}`);
+      el.style.backgroundColor = `#${color}`;
+      elTetrisWrapper.appendChild(el);   
+    }
+    gameField.appendChild(elTetrisWrapper);
+    document.querySelector('.id_1').style.gridColumn = '2';
+  }
+
+}
+
+
+
+let i = 0;
+
+setInterval(() => {
+  i++;
+  if (i === 8){
+    i = 1;
+  }
+  drawElement(i);
+setTimeout(() => {
+  elTetrisWrapper.remove();
+}, 1000);
+
+}, 2000);
