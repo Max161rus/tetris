@@ -37,3 +37,19 @@
 .el {
   border: 1px solid red;
 }
+
+.index_1 {
+  background-color: red;
+}
+
+/* body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#field {
+  background-color: grey;
+  height: 1000px;
+  width: 500px;
+} */
