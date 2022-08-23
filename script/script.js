@@ -13,15 +13,27 @@ function drawField () {
     }
 }
 
+drawField(); // отрисовали игровое поле
+
 function drawElement (gameField) {
+  let x = 0;
+  let y = 2;
+
   const arrElements = document.querySelectorAll('.wrapper__game-cube');
   for (let i = 0; i < arrElements.length; i++){
-    console.log(arrElements)
+    if(gameField[y][x] === 1){
+      arrElements[i].classList.add('index_1');
+    } else {
+      arrElements[i].classList.remove('index_1');
+    }
+    x++;
+    if (x === 10){
+      x = 0;
+      y++;
+    } 
   }
 }
 
-drawField(); // отрисовали игровое поле
-drawElement();
 const gameField = []; // create a game field (24 строки, в 2х верхних элемент появляется, в двух нижних исчезает нижняя часть элемента)
 
 for (let i = 0; i < 24; i++) {
@@ -30,6 +42,8 @@ for (let i = 0; i < 24; i++) {
     gameField[i][j] = 0;
   }
 }
+
+
 
 const figure = {
   'I': [
@@ -80,9 +94,7 @@ function writeGameField(matrix, rowDown) { // функция отрисовыв�
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix.length; j++) {
-      if(gameField[row][col] !== 1) {
         gameField[row][col] = matrix[i][j];
-      }
       col++;
     }
     col = index;
@@ -104,18 +116,19 @@ function elementDown(speed, matrix) { // функция движения эле�
 
   const timer = setInterval(() => {
     writeGameField(matrix, positionRow);
+    drawElement(gameField);
     positionRow++;
-    if (positionRow === 20) {
+    if (positionRow === 21) {
       clearInterval(timer);
       console.log(gameField)
+      elementDown(200, figure.I);
     }
   }, speed)
 };
 
-elementDown(10, figure.S);
+elementDown(200, figure.L);
 
 
 //writeGameField(figure.I, 20)
 
 //console.log(gameField)
-///
