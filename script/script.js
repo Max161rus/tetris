@@ -118,3 +118,4 @@ elementDown(10, figure.S);
 //writeGameField(figure.I, 20)
 
 //console.log(gameField)
+///
