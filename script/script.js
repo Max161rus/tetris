@@ -70,38 +70,11 @@ function zerosInGameField() { // набивает матрицу игровог�
 
 zerosInGameField();
 
-// function apdateGameField() { // обновляем поле gameField, удаляем с него те элементы, которые не имеют под собой единицы
-//   for (let row = 21; row >= 0; row--) {
-//     for (let col = 0; col < gameField[0].length; col++) {
-//       if (gameField[row][col] === 1 && gameField[row + 1][col] === 1) {
-//         gameField[row][col] = 1;
-//       } else {
-//         gameField[row][col] = 0;
-//       }
-//     }
-//   }
-// }
-
 function apdateGameField() { // обновляем поле gameField, удаляем с него те элементы, которые не имеют под собой единицы
-  let indexRow = 0;
-  let indexCol = 0;
   for (let row = 21; row >= 0; row--) {
     for (let col = 0; col < gameField[0].length; col++) {
       if (gameField[row][col] === 1 && gameField[row + 1][col] === 1) {
         gameField[row][col] = 1;
-      } else if (gameField[row][col] === 1 && gameField[row + 1][col] === 0 && gameField[row][col + 1] === 1) {
-        indexRow = row;
-        indexCol = col;
-        
-        while (indexRow < gameField.length - 1){
-          if (gameField[indexRow][indexCol] === 1 && gameField[indexRow + 1][indexCol] === 0) {
-            break;
-          }
-          indexRow++;
-        }
-        if (indexRow === 21){
-          gameField[row][col] = 1;
-        }
       } else {
         gameField[row][col] = 0;
       }
@@ -258,7 +231,7 @@ function elementDown(speed) { // функция движения элемент�
 elementDown(400);
 
 
-//  writeGameField(figure.I, 20);
+ // writeGameField(figure.I, 19, 4);
 //   drawElement(gameField);
 //   chekUnitsDown()
 //   apdateGameField();
